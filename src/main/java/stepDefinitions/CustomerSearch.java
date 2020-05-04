@@ -1,13 +1,13 @@
-package StepDefinitions;
+package stepDefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class CustomerSearch {
-    public class StepDefinitions {
 
+
+    public class StepDefinitions {
         @Given("go to home page")
         public void goToHomePage() {
         }
@@ -16,14 +16,24 @@ public class CustomerSearch {
         public void theSearchPhraseInputFieldIsEnteredInTheInputField() {
         }
 
-        @And("the value from the dropdown{string} is selected")
+        @When("the value from the dropdown{string} is selected")
         public void theValueFromTheDropdownSearchByDropdownIsSelected() {
         }
 
-        @Then("results are shown")
-        public void resultsAreShown() {
+
+        @Then("proper results are shown")
+        public void properResultsAreShown() {
         }
+
+        @Then("proper results are not shown")
+        public void properResultsAreNotShown() {
+        }
+
     }
+
+
+
+
 }
 
 
