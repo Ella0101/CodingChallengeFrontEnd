@@ -6,17 +6,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class CustomerSearchPage extends BasePage {
-    private final By inputElementLocator = By.cssSelector("#search-input");
+    private final By searchInputElementLocator = By.cssSelector("#search-input");
     private final By dropdownElementLocator = By.cssSelector("#search-column");
     private final By matchCaseBoxLocator = By.cssSelector(".checkbox-inline");
+    private final By searchTextElementLocator = By.cssSelector("#table-resume");
 
     public CustomerSearchPage(WebDriver driver) {
         super(driver);
     }
 
-    public CustomerSearchPage searchPeopleByInput() {
-        WebElement inputElement = driver.findElement(inputElementLocator);
-        inputElement.sendKeys();
+    public CustomerSearchPage enterSearchText(String text) {
+        WebElement inputElement = driver.findElement(searchInputElementLocator);
+        inputElement.sendKeys(text);
         return new CustomerSearchPage(driver);
     }
 
@@ -44,5 +45,9 @@ public class CustomerSearchPage extends BasePage {
         if (matchCaseBox.isSelected())
             matchCaseBox.click();
         return new CustomerSearchPage(driver);
+    }
+
+    public boolean isDisplayedMessageElement() {
+        return driver.findElement(searchTextElementLocator).isDisplayed();
     }
 }

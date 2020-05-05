@@ -4,11 +4,11 @@ Feature: Search Customers Feature
   So that I can filter the results on the page
 
   Background: Navigate to home page
-    Given I  go to home page
+    Given I go to home page
 
 
   Scenario Outline: Successfully Searching for Customers
-    When I enter the  phrase '<phrase>'  the input field
+    When I enter the  phrase '<phrase>' in the input field
     And I select value from the '<searchCriteria>' dropdown
     Then message contains phrase '<phrase>' and criteria '<searchCriteria>' with '<matchCase>'
     And there are elements containing '<phrase>' in field '<searchCriteria>' displayed in the table
