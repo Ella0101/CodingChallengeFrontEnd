@@ -10,27 +10,22 @@ Feature: Search Customers Feature
   Scenario Outline: Successfully Searching for Customers
     When I enter the  phrase '<phrase>' in the input field
     And I select value from the '<searchCriteria>' dropdown
+    And I select '<matchCase>' option
     Then message contains phrase '<phrase>' and criteria '<searchCriteria>' with '<matchCase>'
-    And there are elements containing '<phrase>' in field '<searchCriteria>' displayed in the table
+    And message contains proper number of displayed rows
+#    And there are elements containing '<phrase>' in field '<searchCriteria>' displayed in the table
 
     Examples:
-      | phrase       | searchCriteria | matchCase |
-      | 1            | Id             | matchCase |
-      | Bondir       | Name           | matchCase |
-      | info@bond.ir | Email          | matchCase |
-      | Melbourne    | City           | matchCase |
-      | A            | Id             | matchCase |
-      | 0            | Name           | matchCase |
-      | 676          | Email          | matchCase |
-      | 123          | City           | matchCase |
-
-#  Scenario Outline:Unsuccessfully Searching for Customers
-#    When the search phrase '<inputField>' is entered in the input field
-#    And the value from the dropdown'<SearchByDropdown>' is selected
-#    Then proper results are not shown
-#    Examples:
-#      |inputField   |SearchByDropdown|
-#      | A           |Id              |
-#      | 0           |Name            |
-#      | 676         |Email           |
-#      | 123         |City            |
+      | phrase       | searchCriteria | matchCase          |
+      | 1            | Id             | with match case    |
+      | Bondir       | Name           | with match case    |
+      | info@bond.ir | Email          | with match case    |
+      | Melbourne    | City           | with match case    |
+      | A            | Id             | with match case    |
+      | 0            | Name           | with match case    |
+      | 676          | Email          | without match case |
+      | 123          | City           | without match case |
+      | 2            | Id             | without match case |
+      | alabaster    | Name           | without match case |
+      | CONATACT     | Email          | without match case |
+      | bELFAST      | City           | without match case |

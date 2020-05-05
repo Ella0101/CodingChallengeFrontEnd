@@ -9,7 +9,9 @@ public class CustomerSearchPage extends BasePage {
     private final By searchInputElementLocator = By.cssSelector("#search-input");
     private final By dropdownElementLocator = By.cssSelector("#search-column");
     private final By matchCaseBoxLocator = By.cssSelector(".checkbox-inline");
-    private final By searchTextElementLocator = By.cssSelector("#table-resume");
+    private final By messageTextLocator = By.cssSelector("#search-slogan");
+    private final By customerTableRowLocator = By.cssSelector("tr[ng-repeat*='customer']");
+    private final By resultNumberLocator = By.cssSelector("#table-resume");
 
     public CustomerSearchPage(WebDriver driver) {
         super(driver);
@@ -27,12 +29,6 @@ public class CustomerSearchPage extends BasePage {
         return new CustomerSearchPage(driver);
     }
 
-    public CustomerSearchPage clickMatchCase() {
-        WebElement matchCaseBox = driver.findElement(matchCaseBoxLocator);
-        matchCaseBox.click();
-        return new CustomerSearchPage(driver);
-    }
-
     public CustomerSearchPage checkMatchCase() {
         WebElement matchCaseBox = driver.findElement(matchCaseBoxLocator);
         if (!matchCaseBox.isSelected())
@@ -47,7 +43,16 @@ public class CustomerSearchPage extends BasePage {
         return new CustomerSearchPage(driver);
     }
 
-    public boolean isDisplayedMessageElement() {
-        return driver.findElement(searchTextElementLocator).isDisplayed();
+    public String getSearchResultMessage() {
+        WebElement messageText = driver.findElement(messageTextLocator);
+        return messageText.getText();
+    }
+
+    public int getNumberOfRows() {
+        return driver.findElements(customerTableRowLocator).size();
+    }
+
+    public String getResultNumberFromMessage() {
+        return driver.findElement(resultNumberLocator).getText();
     }
 }
